@@ -20,31 +20,31 @@ for optimized development and deployment workflows.
 ### Steps:
 - In this project, we will follow these steps:
 1. Create GitHub repository and upload project files from Local Machine to repository
-— Create GitHub Repository
-— Upload files to repository using terminal (Windows PowerShell / Git Bash)
+- Create GitHub Repository
+- Upload files to repository using terminal (Windows PowerShell / Git Bash)
 2. Create CodeBuild Project
-— Specify source
-— Write “buildspec” file
+- Specify source
+- Write “buildspec” file
 3. Configure System Manager
-— Setting up Parameter Store: Username (string), Password (SecureString), Docker Registry URL (String)
+- Setting up Parameter Store: Username (string), Password (SecureString), Docker Registry URL (String)
 4. AttachPolicies to CodeBuild IAM Role and Build the Project
-— Policies: AministratorAccess
+- Policies: AministratorAccess
 5. Create two IAM Roles
-— Role for EC2 Instance
-— Role for CodeDeploy
+- Role for EC2 Instance
+- Role for CodeDeploy
 6. Create an EC2 Instance as a server
-— Create a “Key Pair” to be used to SSH connect to instance
-— In “Advance Details”, select the EC2 Role under “IAM Instance Profile”
-— SSH connect to Instance
+- Create a “Key Pair” to be used to SSH connect to instance
+- In “Advance Details”, select the EC2 Role under “IAM Instance Profile”
+- SSH connect to Instance
 7. Attach the created EC2 Instance IAM role to the EC2 instance.
 8. Install CodeDeploy Agent on EC2 Instance
-— Use Vi Editor to create the file “install_codedeploy.sh”
+- Use Vi Editor to create the file “install_codedeploy.sh”
 Command: vi install_codedeploy.sh
 9. Install docker
-— Use Vi Editor to create the file “install_docker.sh”
+- Use Vi Editor to create the file “install_docker.sh”
 Command: vi install_docker.sh
 10. Create and Configure Deployment
-— Create Applications
-— Create Deployment Group
-— Create Deployment
+- Create Applications
+- Create Deployment Group
+- Create Deployment
 11. Create an AWS CodePipeline for Seamless flow
