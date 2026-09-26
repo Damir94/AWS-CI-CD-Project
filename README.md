@@ -6,16 +6,16 @@
 for optimized development and deployment workflows.
 
 ### Objective & Learning Outcomes:
-— Objective: To implement an automated CI/CD pipeline that handles code integration, testing, and deployment of Dockerized applications.
-— Learning Outcome: Gained deeper insight into DevOps automation with Docker containerization, AWS services, and streamlined infrastructure management for production-ready environments.
+- Objective: To implement an automated CI/CD pipeline that handles code integration, testing, and deployment of Dockerized applications.
+- Learning Outcome: Gained deeper insight into DevOps automation with Docker containerization, AWS services, and streamlined infrastructure management for production-ready environments.
 
 ### AWS & Docker Services Utilized:
-— AWS CodePipeline: Manages the entire CI/CD flow from GitHub to deployment.
-— AWS CodeBuild: Builds Docker images and performs unit testing to ensure code integrity.
-— AWS CodeDeploy: Deploys containerized applications on EC2 instances, supporting multi-environment setups.
-— Docker: Provides application consistency and scalability with containers.
-— Amazon EC2: Hosts the application, ensuring reliable compute resources.
-— Amazon S3: Stores CI/CD artifacts with robust versioning.
+- AWS CodePipeline: Manages the entire CI/CD flow from GitHub to deployment.
+- AWS CodeBuild: Builds Docker images and performs unit testing to ensure code integrity.
+- AWS CodeDeploy: Deploys containerized applications on EC2 instances, supporting multi-environment setups.
+- Docker: Provides application consistency and scalability with containers.
+- Amazon EC2: Hosts the application, ensuring reliable compute resources.
+- Amazon S3: Stores CI/CD artifacts with robust versioning.
 
 ### Steps:
 - In this project, we will follow these steps:
