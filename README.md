@@ -309,3 +309,48 @@ artifacts:
   files:
     - '**/*'
 ```
+
+### STEP 3: Configure System Manager
+
+- Here we are using env variables that are stored in System manager’s parameter store. Let us configure them first.
+- Search for “System Manager” on AWS Management Console
+
+<img width="720" height="564" alt="1_xLxroYlwPNvhIr9yFQXEXA" src="https://github.com/user-attachments/assets/beb1fdfe-49c2-4d5e-820f-3e00492eb8b8" />
+
+- Click on “Systems Manager”
+
+<img width="720" height="385" alt="1_1ld6j2ZwLL9J2-5A4MaPlw" src="https://github.com/user-attachments/assets/5faa7ba4-e540-4b70-8dcc-42653b80f185" />
+
+- Click on “Parameter Store” on the Left-hand side
+
+<img width="720" height="124" alt="1_n9p2xoxv0Q-lR6q-ex29sA" src="https://github.com/user-attachments/assets/7018521c-eee1-4cad-ad55-03aa78e146e8" />
+
+#### Setting up Parameter Store
+- Click on “Create Parameter” and give name as in the yaml file,
+
+<img width="720" height="398" alt="1_xKwvm_DPlHoLxcoVv5fKIw" src="https://github.com/user-attachments/assets/cae6b706-5b9c-436a-a53d-b30b15d5a646" />
+
+- That is /cloud-cicd/docker-credentials/username: Your DockerHub Username
+- The Provide the “Value”, for our first Parameter, the value is “Your DockerHub Username”
+- Name: /cloud-cicd/docker-credentials/username
+- Value: ebotsmith
+
+<img width="720" height="391" alt="1_k3D6v74Iz_kriA-_O8GuaA" src="https://github.com/user-attachments/assets/0b134d4a-5cea-4783-9851-824f45013bd0" />
+
+- Click on “create parameter”
+
+<img width="720" height="286" alt="1_c7mlPX_n_p_zOkCmYwkZkA" src="https://github.com/user-attachments/assets/6465f199-c447-4a47-b1c0-22d693e67951" />
+
+- Repeat the same for other two parameters
+- Name: /cloud-cicd/docker-credentials/password
+- Value: xxxxxxxxx
+- NOTE: The password is your docker hub password
+- Name: /cloud-cicd/docker-registry/url
+- Value: docker.io
+
+<img width="720" height="326" alt="1_EXYSqoE0K_CiSEElmb33Jg" src="https://github.com/user-attachments/assets/1d74cbc5-56f1-4c21-85d0-8afdce2ce77e" />
+
+- All the phases mentioned in the yaml file are like setting up the environment for building the image
+- → Runtime as the Base image
+- → Installing the requirements
+- → Building and then pushing the image to the DockerHub with provided credentials.
