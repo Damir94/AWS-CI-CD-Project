@@ -48,3 +48,10 @@ Command: vi install_docker.sh
 - Create Deployment Group
 - Create Deployment
 11. Create an AWS CodePipeline for Seamless flow
+
+### STEP 1: — Create GitHub Repository and upload project files from laptop to repository
+
+- Part 1: We have to create a GitHub repository called “AWS-CICD-Project”
+- Click on “Create Repository”
+
+<img width="964" height="920" alt="Screenshot 2026-09-26 at 12 48 13 PM" src="https://github.com/user-attachments/assets/a29e8986-35fd-412e-bc7e-c72fc1088bcc" />
