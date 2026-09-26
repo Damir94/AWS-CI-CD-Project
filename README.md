@@ -218,3 +218,94 @@ set -e
 # Stop the running container (if any)
 echo "Hi"
 ```
+
+### STEP 2: — Create CodeBuild Project.
+- Login to the AWS Console and Navigate to CodeBuild. Search for CodeBuild in AWS Management Console
+
+<img width="720" height="398" alt="1_5nO5NsuBikonotNZjd26gg" src="https://github.com/user-attachments/assets/b088a625-80c0-4cec-8476-35baad640674" />
+
+- Click on “CodeBuild” under “services”
+
+<img width="720" height="296" alt="1_iLEDMTBeY8Tr0jubz1auNQ" src="https://github.com/user-attachments/assets/c0b76f1b-1eb1-4639-965b-9f18129e7e06" />
+
+- Click on “Create Project”
+
+<img width="720" height="711" alt="1_ptj3e5QL4j3pcN9CvbxK3Q" src="https://github.com/user-attachments/assets/cef89e68-6680-4fdb-a3fa-c3235417ebf7" />
+
+- Give the project the name “HotelApp-Build”
+
+<img width="720" height="329" alt="1_nmpqn4OIcihaqoTw47tr2Q" src="https://github.com/user-attachments/assets/1befb59d-c1dc-4e4c-b818-eab30d13af72" />
+
+- On the primary Source will be “Github” and select “Custom Source Credential”, Select “OAuth App” for credential type
+
+<img width="720" height="499" alt="1_rLbk41llYXSd73v6mFHJ9w" src="https://github.com/user-attachments/assets/a7f6d12d-4062-4292-9adf-246a92022128" />
+
+- Click on “Create a new secret”
+
+<img width="610" height="174" alt="1_wcSNPbCDIH_7imJlNTFSOA" src="https://github.com/user-attachments/assets/a2f8ccb8-400b-4be5-b778-7f65fbd7eebd" />
+
+- Click on “Connect to GitHub”
+
+<img width="572" height="339" alt="1_b7ReGCKi9eEMqo-qRDivlA" src="https://github.com/user-attachments/assets/f9f2e2e5-b57c-436b-83fd-b2274b1b9725" />
+
+- I will use the name “HoteApp” and leave “secret description” blank. Then click on “Confirm”
+
+<img width="720" height="250" alt="1_ad_nJKTqdWKY-LvagbK3dw" src="https://github.com/user-attachments/assets/ffe49425-ebbb-457a-b28a-b7828d5a1ffe" />
+
+- Copy the URL of your GitHub repository and paste it in “GitHub Repository”
+
+<img width="720" height="326" alt="1_yndypdLHC_jkhqhsxQvHHg" src="https://github.com/user-attachments/assets/250a588a-07cb-4486-9d18-53c857ad9bd6" />
+
+<img width="720" height="343" alt="1_1T_ifjx3XVL7T6BgZI850A" src="https://github.com/user-attachments/assets/63a2047d-64a8-4c14-a685-1f3c516211f7" />
+
+- Scroll down to “Environment”. On “operating Systems”, select “Ubuntu”, Runtime is “Standard”.
+
+<img width="720" height="632" alt="1_n4344ocYNV2Q6aP6bqRV0w" src="https://github.com/user-attachments/assets/cd4d8d6f-c678-412a-ab9a-0e87bcb8e792" />
+
+<img width="720" height="293" alt="1_2XmNtcaWx4foJSu31YX6Ig" src="https://github.com/user-attachments/assets/43bc187c-e699-424f-b2db-acfb9290b29f" />
+- Note that this will create an IAM role called “codebuild-HotelApp-Build-service-role”
+
+- Under “Buildspec” Select “Use a buildspec file” and give a name as in github repo. That is “buildspec.yml”
+
+<img width="720" height="261" alt="1_me17U6dFD5E_Tl7zndi-cA" src="https://github.com/user-attachments/assets/34bdc867-7fd1-4fc4-9715-1797d69d8f05" />
+
+<img width="720" height="409" alt="1_6feyAqP5pHWWAf0hxpY4Qw" src="https://github.com/user-attachments/assets/c16d4ad8-7385-48d9-a3bc-63bb8850b6de" />
+
+<img width="720" height="481" alt="1_r7wKHD3SBXw3BZr-nDWdxA" src="https://github.com/user-attachments/assets/35c4755e-7b04-4622-89b6-8969a87a94a9" />
+
+- Click on “create build project”.
+
+<img width="720" height="385" alt="1_pnn4HCGK970TX8kHdD7McQ" src="https://github.com/user-attachments/assets/f3f4ad56-4076-4ced-8da4-d25386e1b7b1" />
+
+- Before building it let us understand what is inside the “buildspec file”
+
+```bash
+version: 0.2
+
+env:
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME: /cloud-cicd/docker-credentials/username
+    DOCKER_REGISTRY_PASSWORD: /cloud-cicd/docker-credentials/password
+    DOCKER_REGISTRY_URL: /cloud-cicd/docker-registry/url
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+  pre_build:
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - echo "Running tests..."
+      - echo "Building Docker image..."
+      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
+      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/hotel-app:latest" .
+      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/hotel-app:latest"
+  post_build:
+    commands:
+      - echo "Build completed successfully!"
+artifacts:
+  files:
+    - '**/*'
+```
