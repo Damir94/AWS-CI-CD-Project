@@ -354,3 +354,190 @@ artifacts:
 - → Runtime as the Base image
 - → Installing the requirements
 - → Building and then pushing the image to the DockerHub with provided credentials.
+
+### STEP 4: Attach Policies to CodeBuild role and Build the Project
+
+- We have to attach the “AdminstratorAccess” policy to the IAM role created at the CodeBuild Project
+- Go to “Roles” under IAM
+
+<img width="720" height="381" alt="1_sbjD6uNdEbgopRVEomTARA" src="https://github.com/user-attachments/assets/ead8c44b-7992-4339-bc27-7ba7b5ab6f8d" />
+
+- Search for the role “codebuild-Hotel-App-service-role” and click on it
+
+<img width="720" height="384" alt="1_Nb30PNmv_YrNXK9lMUDSMA" src="https://github.com/user-attachments/assets/04c649de-db62-4c1c-bb74-ed49872a2807" />
+
+- Add permission “AdministratorAccess”
+
+<img width="720" height="267" alt="1_ylGR0JTxqjTYK-mwYeRXrQ" src="https://github.com/user-attachments/assets/b9cb46d9-1bc4-427f-84db-8f8cd7c9ca44" />
+
+- Click on “Add Permission”
+- Head back to the CodeBuild
+
+<img width="720" height="388" alt="1_eyllHGbvQjvfuLF7fqGs2A" src="https://github.com/user-attachments/assets/4d93542e-adb4-41ff-aac2-930dc206ec0b" />
+
+- Click on “Start Build” to build it and after successful completion it will show as:
+
+<img width="720" height="404" alt="1_zZGcfMHo-Aj91qaB1p-Q-A" src="https://github.com/user-attachments/assets/7230d5b0-3ec8-45c2-93b9-d68436374e32" />
+
+- And the logs are:
+
+<img width="720" height="404" alt="1_moLJA0_zsu229SmBYTBTZw" src="https://github.com/user-attachments/assets/6c9cf741-aaf6-465d-bb21-e2970fb337b5" />
+
+- The build is successful. The image will be pushed to the dockerhub. Now, go to the Docker hub to see if the image is there
+
+<img width="720" height="334" alt="1_BS6UP001RCyTKoLY2oSMZQ" src="https://github.com/user-attachments/assets/a85532e8-2960-447c-ba21-1d83744c973f" />
+
+- You can see the image we just created
+
+### STEP 5: Create IAM Roles
+- We have to create two IAM Roles. One for the EC2 instance and another for CodeDeploy
+
+Part 1: IAM Role for EC2 instance
+- CodeDeploy agent in EC2 need to communicate with the CodeDeploy. So, create a role for it.
+
+<img width="720" height="399" alt="1_jK0u6i4FxhToaYwwGEooHg" src="https://github.com/user-attachments/assets/3073eb63-df3e-4527-a90d-68189ce46c15" />
+
+- Click on “Roles” on the left-hand side
+
+<img width="720" height="383" alt="1_LnfoGtDwBBtmcGMAbLychg" src="https://github.com/user-attachments/assets/c4f5fe5c-4262-4dfc-9ef2-052822f3f557" />
+
+- Click on “Create Role”. We will name the role “HotelApp-EC2-Role”. Under “Trusted entity type” choose “AWS Service” and for “use case”, select “EC2”
+
+<img width="720" height="373" alt="1_ZqDQQiAACU8TOl2VCOgjBg" src="https://github.com/user-attachments/assets/07a0f22e-2da5-45fa-a1ea-b82ba5fe9bf5" />
+
+- Click on “Next”
+
+<img width="720" height="382" alt="1_mD1suGMuLnrhfliY9EPZRQ" src="https://github.com/user-attachments/assets/170d394d-f5aa-4630-83e3-7ed4f3dc0b2e" />
+
+- Check “AWSCodeDeployFullAccess” to add this policy
+
+<img width="720" height="170" alt="1_yjD3XfiUyk9EyY87WAmk3w" src="https://github.com/user-attachments/assets/4b093989-bf50-40a7-a406-20e0cf5e8838" />
+
+- Click on “Next”. Give the role a name “HotelApp-EC2-Role”
+
+<img width="720" height="359" alt="1_btKRZe8rfHZhYFjDNXsJTA" src="https://github.com/user-attachments/assets/c146f7a3-783b-4880-9349-5c4e4a905c4f" />
+
+- Click on “Create Role”
+
+<img width="720" height="404" alt="1_HIhzIWRo9KtNkR9vZohsoA" src="https://github.com/user-attachments/assets/039fffba-a5e0-4681-af67-04feb43574a7" />
+
+- The role has been created
+
+<img width="720" height="378" alt="1_kNUWZcPBjEozr48vvGGjgw" src="https://github.com/user-attachments/assets/45533fc4-2e66-4829-ae04-8dbc3212e08c" />
+
+Part 2: IAM Role for CodeDeploy
+- Create the second role for CodeDeploy. We will call this role “HotelApp-Codeploy-Role”. Click on “Create Role”
+
+<img width="720" height="383" alt="1_YnvMYmjAsCxw-L0WawgleQ" src="https://github.com/user-attachments/assets/072db0ef-caa8-4c5e-8287-bf83d03d084c" />
+
+- Click on “Create Role” and in “Use Case” select “CodeDeploy”
+
+<img width="720" height="385" alt="1_ETTOt-JMlmZJGiAsubnpww" src="https://github.com/user-attachments/assets/f9ac12bb-d5c0-4fbe-b7eb-1771a191a49b" />
+
+- Scroll down and click on “Next”
+
+<img width="720" height="203" alt="1_Jr1188H7bNvYttYuALZPXw" src="https://github.com/user-attachments/assets/7512957b-96c9-4c41-89ec-67b360014478" />
+
+- Click on “Next” again, Give the role a name “HotelApp-CodeDeploy-Role”
+
+<img width="720" height="367" alt="1_eLAkUN8cdeFX1ctcdjB-3Q" src="https://github.com/user-attachments/assets/6f7ee64f-e64b-486e-901f-dafbdd681b3d" />
+
+<img width="720" height="341" alt="1_bwFA0ncMJQs6IaMkzPVE4A" src="https://github.com/user-attachments/assets/87bbcae8-4266-4438-b208-c47cc839162e" />
+
+- Click on “Create Role”
+
+<img width="720" height="384" alt="1_iHg4fMB4DzwGFpqs30zaXg" src="https://github.com/user-attachments/assets/9c2094ff-b5f4-4601-ab77-5c3cfa89abc9" />
+
+- Add this permission “AmazonEC2fullAccess” to the role to access the CodeDeploy agent. Click on the role “HotelApp-CodeDeploy-Role” we just created.
+
+<img width="720" height="378" alt="1_os-g2r13Ump5PVvT25XIiA" src="https://github.com/user-attachments/assets/c75da7eb-eef2-48f8-9925-3b285b556a6b" />
+
+- Click on “Add Permission”
+
+<img width="720" height="394" alt="1_gyCKgZclri5vkgV6Ku8i9g" src="https://github.com/user-attachments/assets/2dbd33ff-6d5f-487c-bcf1-151752ad370b" />
+
+- Select “Attach Policies”
+
+<img width="720" height="379" alt="1_5QXZY6nkM4Jb1MQor8m36w" src="https://github.com/user-attachments/assets/02d27090-3bfa-42af-aae9-aaa6cce78561" />
+
+- Select “AmazonEC2fullaccess”, the scroll down and click on “Add Permission”
+
+<img width="720" height="206" alt="1_ArjeRTfcMQ35j41mRNWNRQ" src="https://github.com/user-attachments/assets/7556f099-844d-40e6-bea4-e68325fe63bc" />
+
+- Click on “Add Permission”
+
+<img width="720" height="375" alt="1_v6zkf4dbgvySFNMHXg99QQ" src="https://github.com/user-attachments/assets/c3638840-dc69-4b0f-b2d5-d27f232b293d" />
+
+### STEP 6: — Create an EC2 Server and connect to the server
+- Here we will create an AWS Ubuntu Instance that will be our Server, then have to connect to the server using SSH.
+
+Part 1: Launch EC2 instance adding the EC2 IAM role as “IAM Instance Profile”
+- Navigate to EC2 Console
+
+<img width="720" height="383" alt="1_2hmQgO0DcLc4m3VENvr7iQ" src="https://github.com/user-attachments/assets/c5dc31c8-a68a-4b42-b5fa-02b5c92c0540" />
+
+- Click on Launch Instance and Provide a name to it. I will name it “HotelApp-Server”
+
+<img width="720" height="195" alt="1_-bqCXUPfaXQxWbuKkcKs-Q" src="https://github.com/user-attachments/assets/122d0152-6ea8-4298-8d66-b5920fc02f07" />
+
+- Select AMI as Ubuntu and instance type as “t2.micro”.
+
+<img width="720" height="532" alt="1_N8pgpRHULZ2lDaOSVqZZCQ" src="https://github.com/user-attachments/assets/5447a718-4abd-4c31-b16f-012577e494ec" />
+
+- Provide a key pair for it. I will use the key pair “ubuntuKey” I created in another project
+
+<img width="720" height="125" alt="1_aUqtoX9lXopmf-EiEwW5FA" src="https://github.com/user-attachments/assets/42371581-ec25-46b5-bfb9-f8c3a07f90ff" />
+
+<img width="720" height="461" alt="1_-sBMARHKTdLjdqG5w_kS0w" src="https://github.com/user-attachments/assets/daf49eab-e2d3-4e29-8287-199a2d37153f" />
+
+<img width="720" height="326" alt="1_wME8RRgxMabiiOS0OQPifQ" src="https://github.com/user-attachments/assets/5d49c33e-f097-4916-9ef7-b51cdaf5629d" />
+
+- On IAM Instance Profile, select the role we created for the EC2 instance, that is “HotelApp-EC2-Role”
+
+<img width="720" height="357" alt="1_Y9wapgiDltweShYFziuAsQ" src="https://github.com/user-attachments/assets/48851c93-918c-4e62-879b-40f2f8f90413" />
+
+- Click on create instance.
+
+<img width="720" height="450" alt="1_uPPrSBsblkRmbpu4FWJAOw" src="https://github.com/user-attachments/assets/04ad51bd-c3a2-46e6-bac6-26cc3093aa9c" />
+
+- Click on instance ID on the “Green” part at the top
+
+<img width="720" height="208" alt="1_OtBf4itp4yrLU6iNgYCK-w" src="https://github.com/user-attachments/assets/5c9754dc-69c6-4ac3-bcbe-db0884ea07c2" />
+
+- You can now see the instance we have just created “HotelApp-Server”
+
+Part 2: SSH connect to the instance
+- Now, connect the newly created instance by using SSH
+
+<img width="720" height="208" alt="1_OtBf4itp4yrLU6iNgYCK-w" src="https://github.com/user-attachments/assets/1a3afe9e-5c28-4e1b-9967-11b8f335a970" />
+
+- Select the instance we just created and then SSH into the instance with that key pair.
+
+<img width="720" height="365" alt="1_qb8XJuw9DB5EqR8xm9Uh0w" src="https://github.com/user-attachments/assets/60686ba4-e68d-418d-b726-9dd7c6e60055" />
+
+- Click on “Connect” at the top
+
+<img width="720" height="288" alt="1_8Zrse5PaWYGj5x34Dsa3Rg" src="https://github.com/user-attachments/assets/cefca9eb-7256-4a32-bf9d-5b681d50ac5f" />
+
+- Copy the above command and paste in your PowerShell terminal
+
+```bash
+ssh -i “ubuntuKey.pem” ubuntu@ec2–54–234–18–204.compute-1.amazonaws.com
+```
+- Open PowerShell and navigate to your Downloads folder where the ubuntuKey.pem file is saved
+
+<img width="720" height="213" alt="1_rKoBTqh0daToIwP3r-laBg" src="https://github.com/user-attachments/assets/5675ea9b-263e-4785-b443-c1f929946f30" />
+
+- Now, run the command:
+```bash
+ssh -i “ubuntuKey.pem” ubuntu@ec2–98–80–123–138.compute-1.amazonaws.com
+```
+
+<img width="720" height="258" alt="1_Cl7UXX_JPL1CeVQJjL-VqA" src="https://github.com/user-attachments/assets/53fdce31-9304-4930-ba4a-7b950ef42fd8" />
+
+- Then type “yes” and press ENTER
+
+<img width="720" height="366" alt="1_cYUwAOuqKq4RDcGZWLPv8A" src="https://github.com/user-attachments/assets/39e5c81e-f3b5-45c2-9be9-221e39a0862b" />
+
+- We have now SSHed into the server.
+
