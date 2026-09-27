@@ -541,3 +541,330 @@ ssh -i “ubuntuKey.pem” ubuntu@ec2–98–80–123–138.compute-1.amazonaws.
 
 - We have now SSHed into the server.
 
+### STEP 7: — Attach the created EC2 IAM role to the EC2 instance.
+- → EC2 instance → Actions → Security → Modify IAM role → choose it → Update IAM role
+
+<img width="720" height="178" alt="1_J3eCx4VzWzkRhAnQJln_9g" src="https://github.com/user-attachments/assets/919ffbd2-a748-4c39-83bb-79e4403ef527" />
+
+- Select the EC2 instance
+
+<img width="720" height="378" alt="1_5VdNPPYVEnh5s4b1YksRhQ" src="https://github.com/user-attachments/assets/3fb8a394-0d4c-4224-828d-6fe5f69b4134" />
+
+- Click on “Actions” at the top → Security → Modify IAM role
+
+<img width="720" height="179" alt="1_SkeNVGRd9d-W61v9DXtdLg" src="https://github.com/user-attachments/assets/b526a33c-6456-4247-968c-4529217149cb" />
+
+- Click on “Update IAM role”
+
+<img width="720" height="365" alt="1_UMytGBypd5JHLYmDnsHjDA" src="https://github.com/user-attachments/assets/96270fff-c1e0-4d71-98d9-cfc69f236c0f" />
+
+### STEP 8: — Install CodeDeploy Agent on EC2
+
+- Then create a script called “install_codedeploy.sh” with your favourite editor. I will use vi editor. Open the file and paste the code below to install CodeDeploy Agent:
+
+```bash
+# run system update
+sudo apt update
+sudo apt install ruby-full
+sudo apt install wget
+#wget https://bucket-name.s3.region-identifier.amazonaws.com/latest/install
+# your code should look like this
+wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install chmod +x ./install
+sudo ./install auto
+```
+- I will open the file using the command:
+```bash
+vi install_codedeploy.sh
+```
+
+<img width="720" height="398" alt="1_XB1ncBrg72SO49q1-uJqOw" src="https://github.com/user-attachments/assets/906460ea-525a-4a3e-850c-7433829b16d7" />
+
+- Then paste the code below
+```bash
+# automate the codeDeploy installation with the following shell script
+#!/bin/bash
+# Update package list
+sudo apt update
+# Install Ruby and wget if not already installed
+sudo apt install -y ruby wget
+# Navigate to the home directory
+cd /home/ubuntu
+# Download the CodeDeploy agent installer script for Ubuntu
+wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+# Make the install script executable
+chmod +x ./install
+# Run the install script
+sudo ./install auto
+# Start the CodeDeploy agent service
+sudo service codedeploy-agent start
+# Check the status of the CodeDeploy agent
+sudo service codedeploy-agent status
+# Inform user of successful installation
+echo "AWS CodeDeploy agent installed and started successfully."
+```
+
+<img width="720" height="396" alt="1_oRNS6_wzRanXCnqg8AcgBw" src="https://github.com/user-attachments/assets/09fef2d0-78cd-465f-b3ad-86f509da860c" />
+
+- Save the script by using :wq and press ENTER
+
+<img width="720" height="88" alt="1_uNU7lzDQ5FJpZz8NrGBJRw" src="https://github.com/user-attachments/assets/d39b1b4f-3364-419e-aa04-6a8e13073785" />
+
+- Make the script executable:
+```bash
+chmod +x install_codedeploy.sh
+```
+
+<img width="720" height="97" alt="1_CoNhzFXvdn-UL-6G1hAsug" src="https://github.com/user-attachments/assets/f4df0e1c-4a1d-4753-8d42-abe8646f0b9d" />
+
+- Run the script
+```bash
+./install_codedeploy.sh
+```
+
+<img width="720" height="248" alt="1_bmkYaqLaLHUkPJ3EJ1c_4Q" src="https://github.com/user-attachments/assets/19c27ed1-daaa-49c5-8f10-6f22fec31a29" />
+
+- This script installs the CodeDeploy agent and verifies that it’s running. Make sure you replace the us-east-1 region in the S3 URL with your specific AWS region if you’re not using us-east-1.
+
+- Verify the Installation:
+- After installing the AWS CodeDeploy agent, verify its installation by running the following command on your EC2 instance:
+```bash
+systemctl status codedeploy-agent
+```
+
+<img width="720" height="247" alt="1_v8KV1d9o73MzHV1lh_rIhw" src="https://github.com/user-attachments/assets/f48b107c-aefe-44d2-b58e-14b679c31c63" />
+
+### STEP 9: — Install Docker:
+
+- Ensure that Docker is installed on your EC2 instance to use Docker commands later in the project. Create a shell script called install_docker.sh with the code below to install docker.
+- Make a file install_docker.sh using the command vi install_docker.sh and paste the code below
+
+```bash
+#!/bin/bash
+
+# Update package list and install prerequisites
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+
+# Add Docker’s official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# Add Docker's stable repository
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update package list to include Docker packages
+sudo apt update
+
+# Install Docker
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+# Add the current user to the docker group
+sudo usermod -aG docker $USER
+
+# Inform user to log out and log back in for the group changes to take effect
+echo "Docker installed and user added to docker group. Please log out and log back in to apply group changes."
+```
+
+- Go to your favourite editor and open it. I will use the vi editor. I will open the install_docker.sh file using the command:
+```bash
+vi install_docker.sh
+```
+- Then paste the code
+
+<img width="720" height="258" alt="1_0z-zq6rQFr01dsiIuHkYXg" src="https://github.com/user-attachments/assets/0d5e9700-836e-429b-b8d3-db0eb5b50846" />
+
+- And save it by typing :wq and press ENTER
+
+<img width="720" height="99" alt="1_yVOQqvfQlOUTkmaZQ9E8-A" src="https://github.com/user-attachments/assets/123fe07a-8159-4dd4-b108-a22f01f1e909" />
+
+- Make the script executable
+```bash
+chmod +x install_docker.sh
+```
+
+<img width="720" height="97" alt="1_LzSxqdU3hZBvZh92E_pTNw" src="https://github.com/user-attachments/assets/4fcd6604-cc60-4028-89a8-d09904693c66" />
+
+- Run the script using the command
+```bash
+./install_docker.sh
+```
+
+<img width="720" height="236" alt="1_8PkwCLppHFcLrH02PPN2zA" src="https://github.com/user-attachments/assets/ff8eedb2-6dd7-44ec-bb85-e135b73022af" />
+
+- log out the you log back in.
+- Verify if docker has been installed successfully by running the command:
+```bash
+sudo docker run hello-world
+```
+
+<img width="720" height="269" alt="1_W62gBCnDnluyvul71FiRFw" src="https://github.com/user-attachments/assets/4e89d279-705b-40dc-ad88-cc5c6ebc9ad8" />
+
+### STEP 10: — Create and Configure Deployment.
+
+Part 1: Create CodeDeploy Application
+- Search for “CodeDeploy” on AWS Management Console
+
+<img width="720" height="304" alt="1_BSULH93dUlk8ugR7V3u_Jw" src="https://github.com/user-attachments/assets/10bb5cad-d1bb-4d34-826f-9f039fcc9543" />
+
+- Click on “CodeDeploy” under “Services”
+
+<img width="720" height="275" alt="1_8yACW_0e-MYxOb7p2EnulA" src="https://github.com/user-attachments/assets/ad5cd327-9f1d-487c-bc09-42736c91ee1b" />
+
+- Click on “Applications” on the left-hand side
+
+<img width="720" height="299" alt="1_uQBKUeVVkONl1HePgIBX1A" src="https://github.com/user-attachments/assets/713b6d37-7d8a-4d29-90f4-42dbde611917" />
+
+- Click on “Create Application”, we will name it “Hotel-App” and choose a compute platform as “EC2/On-premises”.
+
+<img width="720" height="497" alt="1_k2C-Lau7TZ0ZAY0rMmBhqA" src="https://github.com/user-attachments/assets/fb33de25-256a-457f-8dd0-401b29982e59" />
+
+- Click on Create application.
+
+<img width="720" height="347" alt="1_l8UeD16MN0K9a8rr4bb9iw" src="https://github.com/user-attachments/assets/8197d327-90fc-431e-8311-e373a55a91a9" />
+
+Part 2: Create Deployment Group.
+- Click on “Create deployment group” and enter a deployment group name. I will use the name “HotelApp-Group”
+
+<img width="720" height="604" alt="1_RrcJ8qU3w1L0RHx23nkdfQ" src="https://github.com/user-attachments/assets/f4159a28-5668-466c-b3ba-17b5e5ebab5b" />
+
+- Under Environment configuration choose “Amazon EC2 instances”. Under Tag group 1: Choose key as “Name” and value as created EC2 instance.
+
+<img width="720" height="637" alt="1_9xzMAnXzlqRVG6BM7X72zg" src="https://github.com/user-attachments/assets/ea40fc49-a72d-42a4-b521-c5d601b6a154" />
+
+- Then scroll to the end and uncheck “Enable Load Balancing”
+
+<img width="720" height="418" alt="1_5yFuEBXDVOPgw3F5_1s_bw" src="https://github.com/user-attachments/assets/d4d876b5-6f6f-4632-8448-2d25935a6a04" />
+
+- Then click on “Create deployment group”.
+
+<img width="720" height="388" alt="1_VmT_ZingYXBunaN3Z07vBA" src="https://github.com/user-attachments/assets/dfc0c151-2d5a-4eb7-a528-04964a79cc0b" />
+
+Part 3: — Create Deployment
+- Go to the file “start_container.sh” in your “Scripts” folder in the GitHub repository and provide your docker image and the port.
+
+<img width="720" height="504" alt="1_4M7ZdJ7Owj72yGnDGxsATA" src="https://github.com/user-attachments/assets/0d58655e-b256-4e0a-bc69-d6d3785bc72f" />
+
+- Modify those two lines. You can get the modified lines from Docker
+
+<img width="720" height="250" alt="1_g82hsFU0quk3sCriZdA_QA" src="https://github.com/user-attachments/assets/9a0766ec-44f8-4b03-acf9-f39bc0e63d7f" />
+
+- On the open file in GitHub, click on Edit
+
+<img width="720" height="250" alt="1_VTVy3WsaBUu4wxYegG2JSA" src="https://github.com/user-attachments/assets/d10366e1-354c-4072-88fa-7d5d6666208a" />
+
+- Click on “Commit Changes”
+
+<img width="720" height="429" alt="1_l7FIGexWM2BQh83z4uniug" src="https://github.com/user-attachments/assets/2dcdd3d5-c531-450c-a66c-77f7ea7b2464" />
+
+- Click on “Commit Changes” again
+
+<img width="720" height="253" alt="1_bGRHgDWwcU-desbuozg5Zw" src="https://github.com/user-attachments/assets/10af088e-8a5d-4010-b502-2b5c6b0ec94e" />
+
+- Go back to “Applications”
+
+<img width="720" height="234" alt="1_AxbLk9KUyM8sfqkhmUXg-w" src="https://github.com/user-attachments/assets/3aadb5ee-0f0a-4a59-99da-780bc30b07a4" />
+
+- Select the “Deployments” tab
+
+<img width="720" height="236" alt="1_aAjt4Daeg4_QE5lBXG0vKA" src="https://github.com/user-attachments/assets/0827aad6-8d79-470a-a604-5a3fbb3ae0b8" />
+
+- Under Deployment group click on “create deployment”.
+
+<img width="720" height="806" alt="1_wQZW3tU67n9olTaiCoBtTw" src="https://github.com/user-attachments/assets/151affab-714d-4a7a-af79-894365e88e30" />
+
+- Select the Deployment Group we just created and under revision type choose “My application is stored in GitHub”
+- Also go to GitHub and create a Token. Copy the token and paste under “GitHub Token Name” and click on Connect.
+
+<img width="720" height="639" alt="1_5GeJIIHiESyI24JizrQ3Lg" src="https://github.com/user-attachments/assets/6a32ffda-eee3-4980-bca8-2e5b99694577" />
+
+- Give the repo URL and the latest Commit Id from the GitHub.
+
+<img width="720" height="357" alt="1_sqlhddJ3AYVHwjfELgXkeQ" src="https://github.com/user-attachments/assets/b8ad52cc-32e0-4e6d-8dab-4cd55b58d843" />
+
+<img width="720" height="542" alt="1_37T-UutJlI3jw1ARhimofQ" src="https://github.com/user-attachments/assets/cd2a50b7-8376-4e5e-96a8-84d5f3ecaf54" />
+
+- Click on “Create deployment”
+
+<img width="720" height="450" alt="1_fcC1U6ao2x-FeUvK97ed-Q" src="https://github.com/user-attachments/assets/5472bf6d-7204-4854-8fbe-73cf65a7bcc8" />
+
+- And you can see that the deployment is successful
+
+<img width="720" height="189" alt="1__TXIGSbIBM7tKkKR0HklgA" src="https://github.com/user-attachments/assets/f9d8a5e5-e128-43bd-9e4c-e4d3988b0ed6" />
+
+- Here you can find the commit ID
+- Verification
+- Access the application on <EC2_public_IPv4_Address>:<host port>
+- 54.234.18.204:80
+- Note: You need to open this port in the instance security group we are using port 80
+
+<img width="720" height="413" alt="1_PXn9IabLu73Po2dBKYfw8w" src="https://github.com/user-attachments/assets/80d3efb6-0a37-4cf6-acd4-6342de052357" />
+
+### STEP 11: — Create an AWS Codepipeline for Seamless flow.
+- Navigate to CodePipeline in AWS console and search for “CodePipeline”
+
+<img width="720" height="299" alt="1_aU1DlqMBcOJgqtvzqKZx1w" src="https://github.com/user-attachments/assets/65e3ba47-00d3-4300-b12c-8455177613ad" />
+
+- Click on “CodePipeline”
+
+<img width="720" height="175" alt="1_kq7pakYXAsIOqkH4QIduOg" src="https://github.com/user-attachments/assets/0d8ab0ef-7716-4cfc-bea8-34bc3875f0e5" />
+
+- Click on “create application”
+
+<img width="720" height="256" alt="1_ecpZRctu-LnEVNGlDPNnoQ" src="https://github.com/user-attachments/assets/1c3fcf8a-3521-468f-808f-3d22b84bc095" />
+
+- Select “Build custom pipeline”
+
+<img width="720" height="275" alt="1_5h2s_KsUMMQRx69uO6Cd4A" src="https://github.com/user-attachments/assets/9a2c38dc-9196-4b62-bc63-ee11b8cc28f0" />
+
+- Click on “Next” and provide a name to it. I will name it “Hotel-App-Application”
+
+<img width="720" height="550" alt="1_f1IqA8W-GbM9klErUbs-8Q" src="https://github.com/user-attachments/assets/a4540630-b6ce-4e08-a7b4-a7703aa90fbb" />
+
+<img width="720" height="266" alt="1_TtfSlb3whzHLpqdkQo5quA" src="https://github.com/user-attachments/assets/ba0562d8-c314-4c52-a0ec-b00f9d65487e" />
+
+- Click on “Next”
+
+<img width="720" height="538" alt="1_d0wnIaajPG8opo8wnJ5nBw" src="https://github.com/user-attachments/assets/02000e18-33be-4975-ae9e-f2e0dc68ee3f" />
+
+- Click on “Connect to GitHub”
+
+<img width="720" height="205" alt="1_dXCuCYrd75TIPhQ58TOAWA" src="https://github.com/user-attachments/assets/65c394e2-abef-4dcc-bb7b-70d178b949fb" />
+
+- Click on “Confirm”
+
+<img width="720" height="523" alt="1_mtHUvlO1bSPOanS-9qEpQQ" src="https://github.com/user-attachments/assets/340750dc-6a1d-47a5-8074-d4a0c5587b32" />
+
+<img width="720" height="374" alt="1_lLBI0qYLPU-pTl8UyBalpg" src="https://github.com/user-attachments/assets/70dcc862-a3e9-4790-8fa2-718f8a467b38" />
+
+- Click on “Next”
+
+<img width="720" height="454" alt="1_gJT5slV2kDWyo-hMxU_GCw" src="https://github.com/user-attachments/assets/926baef4-f3e5-4f20-be1c-dca5ce8ed3aa" />
+
+<img width="720" height="237" alt="1_V196MzKAZewiEta8fOkEGQ" src="https://github.com/user-attachments/assets/076d5ebe-a549-4c5b-b138-2488cc195e3b" />
+
+- Click on Next. Under the Deploy Stage Select Deploy Provider as “AWS CodeDeploy”. Then Select the application and the deployment group created.
+
+<img width="720" height="551" alt="1_oOW_ol14LiE6HlJKV_9UZw" src="https://github.com/user-attachments/assets/95bebe9b-9d18-4df5-b096-1b67b3b1d87b" />
+
+- Click on “Next”
+
+<img width="720" height="376" alt="1_NJEABIJWZvkpRVMpYMY59A" src="https://github.com/user-attachments/assets/9a123e1e-8497-4de1-9e33-b7710a16bc6e" />
+
+<img width="720" height="332" alt="1_z-TeXbXOX5su8gWgVijdDA" src="https://github.com/user-attachments/assets/5726d5f6-fec9-4ac0-9609-b2f1ad62cecc" />
+
+- Review and click on “Create Pipeline”
+
+<img width="720" height="395" alt="1_YFf0onemkYY3eWafLJFAxw" src="https://github.com/user-attachments/assets/cd95da80-1c82-43f3-9c9a-605a9c4c939a" />
+
+- The pipeline has been created and it has started running
+
+<img width="720" height="386" alt="1_3Ff0y0VsobFVsUPSd3P0jg" src="https://github.com/user-attachments/assets/b590e2fc-1d50-4ba2-9ec7-cad9f6453d9d" />
+
+<img width="720" height="379" alt="1_oq59LgCcHJfMtNjN9q-f-g" src="https://github.com/user-attachments/assets/d76325ed-82b5-49b6-aff0-f80fc465bc55" />
+
+- You can see that the pipeline is successful
+- Access the application with the instance ip:
+- Public_IPv4_Address:80, that is 54.234.18.204:80
+
+<img width="720" height="450" alt="1_kRZZ3uy_dPn7dLczbf6kYQ" src="https://github.com/user-attachments/assets/1a998845-288f-432f-b8dd-6c4ebbd4772d" />
+
+- Congratulations you have achieved the seamless Ultimate AWS CICD pipeline.
