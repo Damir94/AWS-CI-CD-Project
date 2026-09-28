@@ -255,7 +255,8 @@ echo "Hi"
 
 - Copy the URL of your GitHub repository and paste it in “GitHub Repository”
 
-<img width="720" height="326" alt="1_yndypdLHC_jkhqhsxQvHHg" src="https://github.com/user-attachments/assets/250a588a-07cb-4486-9d18-53c857ad9bd6" />
+<img width="1234" height="333" alt="Screenshot 2026-09-28 at 8 34 19 AM" src="https://github.com/user-attachments/assets/1d75bdfd-3ab4-4bee-86a6-797c2ff5491c" />
+
 
 <img width="720" height="343" alt="1_1T_ifjx3XVL7T6BgZI850A" src="https://github.com/user-attachments/assets/63a2047d-64a8-4c14-a685-1f3c516211f7" />
 
