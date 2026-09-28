@@ -343,7 +343,7 @@ artifacts:
 
 - Click on “create parameter”
 
-<img width="720" height="286" alt="1_c7mlPX_n_p_zOkCmYwkZkA" src="https://github.com/user-attachments/assets/6465f199-c447-4a47-b1c0-22d693e67951" />
+<img width="1860" height="399" alt="Screenshot 2026-09-28 at 8 54 12 AM" src="https://github.com/user-attachments/assets/27fdaf12-ac00-40bd-a759-8572c23cc252" />
 
 - Repeat the same for other two parameters
 - Name: /cloud-cicd/docker-credentials/password
