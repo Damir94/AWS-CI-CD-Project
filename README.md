@@ -278,7 +278,8 @@ echo "Hi"
 
 - Click on “create build project”.
 
-<img width="720" height="385" alt="1_pnn4HCGK970TX8kHdD7McQ" src="https://github.com/user-attachments/assets/f3f4ad56-4076-4ced-8da4-d25386e1b7b1" />
+<img width="1536" height="532" alt="Screenshot 2026-09-28 at 8 41 32 AM" src="https://github.com/user-attachments/assets/21974adc-4cce-49bb-b2e2-106427a3a1f0" />
+
 
 - Before building it let us understand what is inside the “buildspec file”
 
