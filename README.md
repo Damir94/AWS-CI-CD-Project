@@ -722,10 +722,6 @@ Part 3: — Create Deployment
 
 <img width="1555" height="735" alt="Screenshot 2026-09-28 at 10 07 22 AM" src="https://github.com/user-attachments/assets/a5783e09-1c8d-4971-93ea-74c7784ee1cb" />
 
-- Click on “Commit Changes” again
-
-<img width="1869" height="341" alt="Screenshot 2026-09-28 at 10 07 55 AM" src="https://github.com/user-attachments/assets/1a6fe986-b259-4767-8bd4-79efb4d904b2" />
-
 - Go back to “Applications”
 
 <img width="1845" height="625" alt="Screenshot 2026-09-28 at 10 09 55 AM" src="https://github.com/user-attachments/assets/64b972a3-e409-48b2-b51a-4bae9cdf1cd7" />
