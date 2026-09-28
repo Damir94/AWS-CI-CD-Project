@@ -362,7 +362,7 @@ artifacts:
 - We have to attach the “AdminstratorAccess” policy to the IAM role created at the CodeBuild Project
 - Go to “Roles” under IAM
 
-<img width="720" height="381" alt="1_sbjD6uNdEbgopRVEomTARA" src="https://github.com/user-attachments/assets/ead8c44b-7992-4339-bc27-7ba7b5ab6f8d" />
+<img width="1561" height="511" alt="Screenshot 2026-09-28 at 8 57 38 AM" src="https://github.com/user-attachments/assets/73ecf50d-8b09-422b-be15-0bf402108438" />
 
 - Search for the role “codebuild-Hotel-App-service-role” and click on it
 
