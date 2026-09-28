@@ -375,19 +375,20 @@ artifacts:
 - Click on “Add Permission”
 - Head back to the CodeBuild
 
-<img width="720" height="388" alt="1_eyllHGbvQjvfuLF7fqGs2A" src="https://github.com/user-attachments/assets/4d93542e-adb4-41ff-aac2-930dc206ec0b" />
+<img width="1550" height="522" alt="Screenshot 2026-09-28 at 9 00 14 AM" src="https://github.com/user-attachments/assets/fac48b7e-f260-4d79-b2ce-7227b0c7d6e5" />
+
 
 - Click on “Start Build” to build it and after successful completion it will show as:
 
-<img width="720" height="404" alt="1_zZGcfMHo-Aj91qaB1p-Q-A" src="https://github.com/user-attachments/assets/7230d5b0-3ec8-45c2-93b9-d68436374e32" />
+<img width="1512" height="801" alt="Screenshot 2026-09-28 at 9 02 35 AM" src="https://github.com/user-attachments/assets/b8238ec6-37e5-4124-9ccd-1d5a5883f1ee" />
 
 - And the logs are:
 
-<img width="720" height="404" alt="1_moLJA0_zsu229SmBYTBTZw" src="https://github.com/user-attachments/assets/6c9cf741-aaf6-465d-bb21-e2970fb337b5" />
+<img width="1513" height="799" alt="Screenshot 2026-09-28 at 9 03 23 AM" src="https://github.com/user-attachments/assets/b4f34106-28a4-4e3b-8b84-c41cfdfa1edc" />
 
 - The build is successful. The image will be pushed to the dockerhub. Now, go to the Docker hub to see if the image is there
 
-<img width="720" height="334" alt="1_BS6UP001RCyTKoLY2oSMZQ" src="https://github.com/user-attachments/assets/a85532e8-2960-447c-ba21-1d83744c973f" />
+<img width="1640" height="279" alt="Screenshot 2026-09-28 at 9 04 05 AM" src="https://github.com/user-attachments/assets/acbcf548-6faa-41b6-a4a5-8a1616eca3b9" />
 
 - You can see the image we just created
 
@@ -397,19 +398,19 @@ artifacts:
 Part 1: IAM Role for EC2 instance
 - CodeDeploy agent in EC2 need to communicate with the CodeDeploy. So, create a role for it.
 
-<img width="720" height="399" alt="1_jK0u6i4FxhToaYwwGEooHg" src="https://github.com/user-attachments/assets/3073eb63-df3e-4527-a90d-68189ce46c15" />
+<img width="1037" height="662" alt="Screenshot 2026-09-28 at 9 05 20 AM" src="https://github.com/user-attachments/assets/31e44119-2ef4-472e-89f7-472d4f7b351f" />
 
 - Click on “Roles” on the left-hand side
 
-<img width="720" height="383" alt="1_LnfoGtDwBBtmcGMAbLychg" src="https://github.com/user-attachments/assets/c4f5fe5c-4262-4dfc-9ef2-052822f3f557" />
+<img width="1558" height="498" alt="Screenshot 2026-09-28 at 9 05 58 AM" src="https://github.com/user-attachments/assets/03593a26-92aa-4f84-9bd5-29814085d5b6" />
 
 - Click on “Create Role”. We will name the role “HotelApp-EC2-Role”. Under “Trusted entity type” choose “AWS Service” and for “use case”, select “EC2”
 
-<img width="720" height="373" alt="1_ZqDQQiAACU8TOl2VCOgjBg" src="https://github.com/user-attachments/assets/07a0f22e-2da5-45fa-a1ea-b82ba5fe9bf5" />
+<img width="1060" height="673" alt="Screenshot 2026-09-28 at 9 07 27 AM" src="https://github.com/user-attachments/assets/c3654a1e-3170-4b04-ad1e-38b478e613e8" />
 
 - Click on “Next”
 
-<img width="720" height="382" alt="1_mD1suGMuLnrhfliY9EPZRQ" src="https://github.com/user-attachments/assets/170d394d-f5aa-4630-83e3-7ed4f3dc0b2e" />
+<img width="1553" height="675" alt="Screenshot 2026-09-28 at 9 08 41 AM" src="https://github.com/user-attachments/assets/16b0c60a-2717-491a-bddf-5162b72bc0ea" />
 
 - Check “AWSCodeDeployFullAccess” to add this policy
 
@@ -421,20 +422,16 @@ Part 1: IAM Role for EC2 instance
 
 - Click on “Create Role”
 
-<img width="720" height="404" alt="1_HIhzIWRo9KtNkR9vZohsoA" src="https://github.com/user-attachments/assets/039fffba-a5e0-4681-af67-04feb43574a7" />
+<img width="1551" height="630" alt="Screenshot 2026-09-28 at 9 10 51 AM" src="https://github.com/user-attachments/assets/0616698f-525f-4428-aa12-6dbaf72baa0f" />
 
 - The role has been created
-
-<img width="720" height="378" alt="1_kNUWZcPBjEozr48vvGGjgw" src="https://github.com/user-attachments/assets/45533fc4-2e66-4829-ae04-8dbc3212e08c" />
 
 Part 2: IAM Role for CodeDeploy
 - Create the second role for CodeDeploy. We will call this role “HotelApp-Codeploy-Role”. Click on “Create Role”
 
-<img width="720" height="383" alt="1_YnvMYmjAsCxw-L0WawgleQ" src="https://github.com/user-attachments/assets/072db0ef-caa8-4c5e-8287-bf83d03d084c" />
-
 - Click on “Create Role” and in “Use Case” select “CodeDeploy”
 
-<img width="720" height="385" alt="1_ETTOt-JMlmZJGiAsubnpww" src="https://github.com/user-attachments/assets/f9ac12bb-d5c0-4fbe-b7eb-1771a191a49b" />
+<img width="1239" height="677" alt="Screenshot 2026-09-28 at 9 12 22 AM" src="https://github.com/user-attachments/assets/05c18995-f294-4c42-9a7f-27256a976dd4" />
 
 - Scroll down and click on “Next”
 
@@ -448,7 +445,7 @@ Part 2: IAM Role for CodeDeploy
 
 - Click on “Create Role”
 
-<img width="720" height="384" alt="1_iHg4fMB4DzwGFpqs30zaXg" src="https://github.com/user-attachments/assets/9c2094ff-b5f4-4601-ab77-5c3cfa89abc9" />
+<img width="1546" height="678" alt="Screenshot 2026-09-28 at 9 13 54 AM" src="https://github.com/user-attachments/assets/cde044a0-a693-46c5-9a4f-f94aa2dc6e50" />
 
 - Add this permission “AmazonEC2fullAccess” to the role to access the CodeDeploy agent. Click on the role “HotelApp-CodeDeploy-Role” we just created.
 
@@ -476,7 +473,7 @@ Part 2: IAM Role for CodeDeploy
 Part 1: Launch EC2 instance adding the EC2 IAM role as “IAM Instance Profile”
 - Navigate to EC2 Console
 
-<img width="720" height="383" alt="1_2hmQgO0DcLc4m3VENvr7iQ" src="https://github.com/user-attachments/assets/c5dc31c8-a68a-4b42-b5fa-02b5c92c0540" />
+<img width="1059" height="583" alt="Screenshot 2026-09-28 at 9 16 30 AM" src="https://github.com/user-attachments/assets/f7dc06e0-0ca1-4dfc-a989-2de7213a7f1c" />
 
 - Click on Launch Instance and Provide a name to it. I will name it “HotelApp-Server”
 
@@ -486,11 +483,11 @@ Part 1: Launch EC2 instance adding the EC2 IAM role as “IAM Instance Profile�
 
 <img width="720" height="532" alt="1_N8pgpRHULZ2lDaOSVqZZCQ" src="https://github.com/user-attachments/assets/5447a718-4abd-4c31-b16f-012577e494ec" />
 
-- Provide a key pair for it. I will use the key pair “ubuntuKey” I created in another project
+- Provide a key pair for it. I will use the key pair “devops-demo” I created in another project
 
-<img width="720" height="125" alt="1_aUqtoX9lXopmf-EiEwW5FA" src="https://github.com/user-attachments/assets/42371581-ec25-46b5-bfb9-f8c3a07f90ff" />
+<img width="1272" height="219" alt="Screenshot 2026-09-28 at 9 17 52 AM" src="https://github.com/user-attachments/assets/fd1d2678-f53e-4e28-bd99-97dcb54650d7" />
 
-<img width="720" height="461" alt="1_-sBMARHKTdLjdqG5w_kS0w" src="https://github.com/user-attachments/assets/daf49eab-e2d3-4e29-8287-199a2d37153f" />
+<img width="1247" height="374" alt="Screenshot 2026-09-28 at 9 18 39 AM" src="https://github.com/user-attachments/assets/40615bce-c463-487d-8785-9f091d2afa2f" />
 
 <img width="720" height="326" alt="1_wME8RRgxMabiiOS0OQPifQ" src="https://github.com/user-attachments/assets/5d49c33e-f097-4916-9ef7-b51cdaf5629d" />
 
@@ -500,57 +497,48 @@ Part 1: Launch EC2 instance adding the EC2 IAM role as “IAM Instance Profile�
 
 - Click on create instance.
 
-<img width="720" height="450" alt="1_uPPrSBsblkRmbpu4FWJAOw" src="https://github.com/user-attachments/assets/04ad51bd-c3a2-46e6-bac6-26cc3093aa9c" />
+<img width="1917" height="575" alt="Screenshot 2026-09-28 at 9 20 07 AM" src="https://github.com/user-attachments/assets/70d957ff-0058-440a-b0fc-a33bcce5356f" />
 
 - Click on instance ID on the “Green” part at the top
 
-<img width="720" height="208" alt="1_OtBf4itp4yrLU6iNgYCK-w" src="https://github.com/user-attachments/assets/5c9754dc-69c6-4ac3-bcbe-db0884ea07c2" />
+<img width="1605" height="325" alt="Screenshot 2026-09-28 at 9 20 49 AM" src="https://github.com/user-attachments/assets/14e2c825-b53a-4914-8313-986fb06542a4" />
 
 - You can now see the instance we have just created “HotelApp-Server”
 
 Part 2: SSH connect to the instance
 - Now, connect the newly created instance by using SSH
 
-<img width="720" height="208" alt="1_OtBf4itp4yrLU6iNgYCK-w" src="https://github.com/user-attachments/assets/1a3afe9e-5c28-4e1b-9967-11b8f335a970" />
-
 - Select the instance we just created and then SSH into the instance with that key pair.
 
-<img width="720" height="365" alt="1_qb8XJuw9DB5EqR8xm9Uh0w" src="https://github.com/user-attachments/assets/60686ba4-e68d-418d-b726-9dd7c6e60055" />
+<img width="1566" height="243" alt="Screenshot 2026-09-28 at 9 21 40 AM" src="https://github.com/user-attachments/assets/5ca40000-7578-4ee9-9d27-933b1bb785b0" />
 
 - Click on “Connect” at the top
 
-<img width="720" height="288" alt="1_8Zrse5PaWYGj5x34Dsa3Rg" src="https://github.com/user-attachments/assets/cefca9eb-7256-4a32-bf9d-5b681d50ac5f" />
+<img width="1864" height="756" alt="Screenshot 2026-09-28 at 9 22 49 AM" src="https://github.com/user-attachments/assets/db6d4ebc-1812-420d-bbe7-70cbb2c80706" />
 
-- Copy the above command and paste in your PowerShell terminal
+- Copy the above command and paste in your terminal
 
 ```bash
 ssh -i “ubuntuKey.pem” ubuntu@ec2–54–234–18–204.compute-1.amazonaws.com
 ```
-- Open PowerShell and navigate to your Downloads folder where the ubuntuKey.pem file is saved
-
-<img width="720" height="213" alt="1_rKoBTqh0daToIwP3r-laBg" src="https://github.com/user-attachments/assets/5675ea9b-263e-4785-b443-c1f929946f30" />
+- Open terminal and navigate to your Downloads folder where the ubuntuKey.pem file is saved
 
 - Now, run the command:
 ```bash
 ssh -i “ubuntuKey.pem” ubuntu@ec2–98–80–123–138.compute-1.amazonaws.com
 ```
 
-<img width="720" height="258" alt="1_Cl7UXX_JPL1CeVQJjL-VqA" src="https://github.com/user-attachments/assets/53fdce31-9304-4930-ba4a-7b950ef42fd8" />
-
 - Then type “yes” and press ENTER
-
-<img width="720" height="366" alt="1_cYUwAOuqKq4RDcGZWLPv8A" src="https://github.com/user-attachments/assets/39e5c81e-f3b5-45c2-9be9-221e39a0862b" />
-
 - We have now SSHed into the server.
+  
+<img width="1062" height="130" alt="Screenshot 2026-09-28 at 9 26 16 AM" src="https://github.com/user-attachments/assets/a6905521-1950-4b13-9649-767b57e573e4" />
 
 ### STEP 7: — Attach the created EC2 IAM role to the EC2 instance.
 - → EC2 instance → Actions → Security → Modify IAM role → choose it → Update IAM role
 
-<img width="720" height="178" alt="1_J3eCx4VzWzkRhAnQJln_9g" src="https://github.com/user-attachments/assets/919ffbd2-a748-4c39-83bb-79e4403ef527" />
-
 - Select the EC2 instance
 
-<img width="720" height="378" alt="1_5VdNPPYVEnh5s4b1YksRhQ" src="https://github.com/user-attachments/assets/3fb8a394-0d4c-4224-828d-6fe5f69b4134" />
+<img width="1615" height="264" alt="Screenshot 2026-09-28 at 9 27 59 AM" src="https://github.com/user-attachments/assets/391eae5a-f824-429d-b2ff-f282d71f6909" />
 
 - Click on “Actions” at the top → Security → Modify IAM role
 
@@ -558,28 +546,15 @@ ssh -i “ubuntuKey.pem” ubuntu@ec2–98–80–123–138.compute-1.amazonaws.
 
 - Click on “Update IAM role”
 
-<img width="720" height="365" alt="1_UMytGBypd5JHLYmDnsHjDA" src="https://github.com/user-attachments/assets/96270fff-c1e0-4d71-98d9-cfc69f236c0f" />
+<img width="1589" height="219" alt="Screenshot 2026-09-28 at 9 29 44 AM" src="https://github.com/user-attachments/assets/d2576d82-d7d6-4eae-aad6-55637079a0ac" />
 
 ### STEP 8: — Install CodeDeploy Agent on EC2
 
 - Then create a script called “install_codedeploy.sh” with your favourite editor. I will use vi editor. Open the file and paste the code below to install CodeDeploy Agent:
 
 ```bash
-# run system update
-sudo apt update
-sudo apt install ruby-full
-sudo apt install wget
-#wget https://bucket-name.s3.region-identifier.amazonaws.com/latest/install
-# your code should look like this
-wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install chmod +x ./install
-sudo ./install auto
-```
-- I will open the file using the command:
-```bash
 vi install_codedeploy.sh
 ```
-
-<img width="720" height="398" alt="1_XB1ncBrg72SO49q1-uJqOw" src="https://github.com/user-attachments/assets/906460ea-525a-4a3e-850c-7433829b16d7" />
 
 - Then paste the code below
 ```bash
@@ -605,25 +580,23 @@ sudo service codedeploy-agent status
 echo "AWS CodeDeploy agent installed and started successfully."
 ```
 
-<img width="720" height="396" alt="1_oRNS6_wzRanXCnqg8AcgBw" src="https://github.com/user-attachments/assets/09fef2d0-78cd-465f-b3ad-86f509da860c" />
+<img width="830" height="493" alt="Screenshot 2026-09-28 at 9 31 50 AM" src="https://github.com/user-attachments/assets/9270251b-158f-40aa-8aef-9578c21e4f49" />
 
 - Save the script by using :wq and press ENTER
-
-<img width="720" height="88" alt="1_uNU7lzDQ5FJpZz8NrGBJRw" src="https://github.com/user-attachments/assets/d39b1b4f-3364-419e-aa04-6a8e13073785" />
 
 - Make the script executable:
 ```bash
 chmod +x install_codedeploy.sh
 ```
 
-<img width="720" height="97" alt="1_CoNhzFXvdn-UL-6G1hAsug" src="https://github.com/user-attachments/assets/f4df0e1c-4a1d-4753-8d42-abe8646f0b9d" />
+<img width="535" height="81" alt="Screenshot 2026-09-28 at 9 32 47 AM" src="https://github.com/user-attachments/assets/bcccbd21-d727-4990-8dc8-9164cd55ca09" />
 
 - Run the script
 ```bash
 ./install_codedeploy.sh
 ```
 
-<img width="720" height="248" alt="1_bmkYaqLaLHUkPJ3EJ1c_4Q" src="https://github.com/user-attachments/assets/19c27ed1-daaa-49c5-8f10-6f22fec31a29" />
+<img width="1209" height="394" alt="Screenshot 2026-09-28 at 9 50 05 AM" src="https://github.com/user-attachments/assets/09470b01-74c9-4e39-aaa5-10eaa2058557" />
 
 - This script installs the CodeDeploy agent and verifies that it’s running. Make sure you replace the us-east-1 region in the S3 URL with your specific AWS region if you’re not using us-east-1.
 
@@ -633,7 +606,7 @@ chmod +x install_codedeploy.sh
 systemctl status codedeploy-agent
 ```
 
-<img width="720" height="247" alt="1_v8KV1d9o73MzHV1lh_rIhw" src="https://github.com/user-attachments/assets/f48b107c-aefe-44d2-b58e-14b679c31c63" />
+<img width="1140" height="394" alt="Screenshot 2026-09-28 at 9 51 32 AM" src="https://github.com/user-attachments/assets/d2a3337c-ce58-4499-942a-87cff17e6a70" />
 
 ### STEP 9: — Install Docker:
 
@@ -672,25 +645,23 @@ vi install_docker.sh
 ```
 - Then paste the code
 
-<img width="720" height="258" alt="1_0z-zq6rQFr01dsiIuHkYXg" src="https://github.com/user-attachments/assets/0d5e9700-836e-429b-b8d3-db0eb5b50846" />
+<img width="1902" height="485" alt="Screenshot 2026-09-28 at 9 53 21 AM" src="https://github.com/user-attachments/assets/407edd9b-116f-4561-b304-e50f92e6c853" />
 
 - And save it by typing :wq and press ENTER
-
-<img width="720" height="99" alt="1_yVOQqvfQlOUTkmaZQ9E8-A" src="https://github.com/user-attachments/assets/123fe07a-8159-4dd4-b108-a22f01f1e909" />
 
 - Make the script executable
 ```bash
 chmod +x install_docker.sh
 ```
 
-<img width="720" height="97" alt="1_LzSxqdU3hZBvZh92E_pTNw" src="https://github.com/user-attachments/assets/4fcd6604-cc60-4028-89a8-d09904693c66" />
+<img width="514" height="86" alt="Screenshot 2026-09-28 at 9 54 15 AM" src="https://github.com/user-attachments/assets/0aa8a825-d7ed-4741-a00e-e86fe1786e8f" />
 
 - Run the script using the command
 ```bash
 ./install_docker.sh
 ```
 
-<img width="720" height="236" alt="1_8PkwCLppHFcLrH02PPN2zA" src="https://github.com/user-attachments/assets/ff8eedb2-6dd7-44ec-bb85-e135b73022af" />
+<img width="986" height="237" alt="Screenshot 2026-09-28 at 9 55 23 AM" src="https://github.com/user-attachments/assets/28d5e8a3-a100-4722-ad49-326888dafb2f" />
 
 - log out the you log back in.
 - Verify if docker has been installed successfully by running the command:
@@ -698,7 +669,7 @@ chmod +x install_docker.sh
 sudo docker run hello-world
 ```
 
-<img width="720" height="269" alt="1_W62gBCnDnluyvul71FiRFw" src="https://github.com/user-attachments/assets/4e89d279-705b-40dc-ad88-cc5c6ebc9ad8" />
+<img width="1082" height="646" alt="Screenshot 2026-09-28 at 9 56 33 AM" src="https://github.com/user-attachments/assets/09bcb4d7-9f33-435e-badd-990baa419f93" />
 
 ### STEP 10: — Create and Configure Deployment.
 
@@ -709,11 +680,11 @@ Part 1: Create CodeDeploy Application
 
 - Click on “CodeDeploy” under “Services”
 
-<img width="720" height="275" alt="1_8yACW_0e-MYxOb7p2EnulA" src="https://github.com/user-attachments/assets/ad5cd327-9f1d-487c-bc09-42736c91ee1b" />
+<img width="1549" height="370" alt="Screenshot 2026-09-28 at 9 58 11 AM" src="https://github.com/user-attachments/assets/edb5ed6a-8b52-417d-93e8-21865df21abb" />
 
 - Click on “Applications” on the left-hand side
 
-<img width="720" height="299" alt="1_uQBKUeVVkONl1HePgIBX1A" src="https://github.com/user-attachments/assets/713b6d37-7d8a-4d29-90f4-42dbde611917" />
+<img width="1532" height="332" alt="Screenshot 2026-09-28 at 9 57 43 AM" src="https://github.com/user-attachments/assets/c24068dc-928e-4834-8ae4-eb9b5bbce2e6" />
 
 - Click on “Create Application”, we will name it “Hotel-App” and choose a compute platform as “EC2/On-premises”.
 
@@ -743,11 +714,9 @@ Part 2: Create Deployment Group.
 Part 3: — Create Deployment
 - Go to the file “start_container.sh” in your “Scripts” folder in the GitHub repository and provide your docker image and the port.
 
-<img width="720" height="504" alt="1_4M7ZdJ7Owj72yGnDGxsATA" src="https://github.com/user-attachments/assets/0d58655e-b256-4e0a-bc69-d6d3785bc72f" />
+<img width="793" height="267" alt="Screenshot 2026-09-28 at 10 06 26 AM" src="https://github.com/user-attachments/assets/161c2bd3-0997-458e-bfc4-67e4bbccd9af" />
 
 - Modify those two lines. You can get the modified lines from Docker
-
-<img width="720" height="250" alt="1_g82hsFU0quk3sCriZdA_QA" src="https://github.com/user-attachments/assets/9a0766ec-44f8-4b03-acf9-f39bc0e63d7f" />
 
 - On the open file in GitHub, click on Edit
 
@@ -755,50 +724,47 @@ Part 3: — Create Deployment
 
 - Click on “Commit Changes”
 
-<img width="720" height="429" alt="1_l7FIGexWM2BQh83z4uniug" src="https://github.com/user-attachments/assets/2dcdd3d5-c531-450c-a66c-77f7ea7b2464" />
+<img width="1555" height="735" alt="Screenshot 2026-09-28 at 10 07 22 AM" src="https://github.com/user-attachments/assets/a5783e09-1c8d-4971-93ea-74c7784ee1cb" />
 
 - Click on “Commit Changes” again
 
-<img width="720" height="253" alt="1_bGRHgDWwcU-desbuozg5Zw" src="https://github.com/user-attachments/assets/10af088e-8a5d-4010-b502-2b5c6b0ec94e" />
+<img width="1869" height="341" alt="Screenshot 2026-09-28 at 10 07 55 AM" src="https://github.com/user-attachments/assets/1a6fe986-b259-4767-8bd4-79efb4d904b2" />
 
 - Go back to “Applications”
 
-<img width="720" height="234" alt="1_AxbLk9KUyM8sfqkhmUXg-w" src="https://github.com/user-attachments/assets/3aadb5ee-0f0a-4a59-99da-780bc30b07a4" />
+<img width="1845" height="625" alt="Screenshot 2026-09-28 at 10 09 55 AM" src="https://github.com/user-attachments/assets/64b972a3-e409-48b2-b51a-4bae9cdf1cd7" />
 
 - Select the “Deployments” tab
 
-<img width="720" height="236" alt="1_aAjt4Daeg4_QE5lBXG0vKA" src="https://github.com/user-attachments/assets/0827aad6-8d79-470a-a604-5a3fbb3ae0b8" />
+<img width="1537" height="650" alt="Screenshot 2026-09-28 at 10 10 55 AM" src="https://github.com/user-attachments/assets/4d23ffbe-3032-4d27-89dc-217c9c4f75f0" />
 
 - Under Deployment group click on “create deployment”.
 
-<img width="720" height="806" alt="1_wQZW3tU67n9olTaiCoBtTw" src="https://github.com/user-attachments/assets/151affab-714d-4a7a-af79-894365e88e30" />
+<img width="1471" height="634" alt="Screenshot 2026-09-28 at 10 12 30 AM" src="https://github.com/user-attachments/assets/27e80cb4-520b-45a8-9909-c5e2be59482a" />
 
 - Select the Deployment Group we just created and under revision type choose “My application is stored in GitHub”
 - Also go to GitHub and create a Token. Copy the token and paste under “GitHub Token Name” and click on Connect.
 
-<img width="720" height="639" alt="1_5GeJIIHiESyI24JizrQ3Lg" src="https://github.com/user-attachments/assets/6a32ffda-eee3-4980-bca8-2e5b99694577" />
+<img width="1355" height="718" alt="Screenshot 2026-09-28 at 10 15 12 AM" src="https://github.com/user-attachments/assets/74e94caf-28bc-46fd-a7fe-5efe0daae4b6" />
 
 - Give the repo URL and the latest Commit Id from the GitHub.
 
-<img width="720" height="357" alt="1_sqlhddJ3AYVHwjfELgXkeQ" src="https://github.com/user-attachments/assets/b8ad52cc-32e0-4e6d-8dab-4cd55b58d843" />
+<img width="1424" height="220" alt="Screenshot 2026-09-28 at 10 19 30 AM" src="https://github.com/user-attachments/assets/ea67f777-36a1-46cb-9401-cd941db5837d" />
 
 <img width="720" height="542" alt="1_37T-UutJlI3jw1ARhimofQ" src="https://github.com/user-attachments/assets/cd2a50b7-8376-4e5e-96a8-84d5f3ecaf54" />
 
 - Click on “Create deployment”
 
-<img width="720" height="450" alt="1_fcC1U6ao2x-FeUvK97ed-Q" src="https://github.com/user-attachments/assets/5472bf6d-7204-4854-8fbe-73cf65a7bcc8" />
+<img width="1424" height="803" alt="Screenshot 2026-09-28 at 10 24 41 AM" src="https://github.com/user-attachments/assets/df667270-80f8-44c8-9e02-a0fe7e683950" />
 
 - And you can see that the deployment is successful
 
-<img width="720" height="189" alt="1__TXIGSbIBM7tKkKR0HklgA" src="https://github.com/user-attachments/assets/f9d8a5e5-e128-43bd-9e4c-e4d3988b0ed6" />
-
-- Here you can find the commit ID
-- Verification
+### Verification
 - Access the application on <EC2_public_IPv4_Address>:<host port>
 - 54.234.18.204:80
 - Note: You need to open this port in the instance security group we are using port 80
 
-<img width="720" height="413" alt="1_PXn9IabLu73Po2dBKYfw8w" src="https://github.com/user-attachments/assets/80d3efb6-0a37-4cf6-acd4-6342de052357" />
+<img width="1893" height="1010" alt="Screenshot 2026-09-28 at 10 39 17 AM" src="https://github.com/user-attachments/assets/fde0ffe3-6e11-4849-8496-92a5aa407ff1" />
 
 ### STEP 11: — Create an AWS Codepipeline for Seamless flow.
 - Navigate to CodePipeline in AWS console and search for “CodePipeline”
@@ -807,7 +773,7 @@ Part 3: — Create Deployment
 
 - Click on “CodePipeline”
 
-<img width="720" height="175" alt="1_kq7pakYXAsIOqkH4QIduOg" src="https://github.com/user-attachments/assets/0d8ab0ef-7716-4cfc-bea8-34bc3875f0e5" />
+<img width="1845" height="328" alt="Screenshot 2026-09-28 at 10 40 44 AM" src="https://github.com/user-attachments/assets/d9e2c1d7-1e96-4feb-a18f-430f92e3c9a2" />
 
 - Click on “create application”
 
@@ -833,9 +799,7 @@ Part 3: — Create Deployment
 
 - Click on “Confirm”
 
-<img width="720" height="523" alt="1_mtHUvlO1bSPOanS-9qEpQQ" src="https://github.com/user-attachments/assets/340750dc-6a1d-47a5-8074-d4a0c5587b32" />
-
-<img width="720" height="374" alt="1_lLBI0qYLPU-pTl8UyBalpg" src="https://github.com/user-attachments/assets/70dcc862-a3e9-4790-8fa2-718f8a467b38" />
+<img width="992" height="683" alt="Screenshot 2026-09-28 at 10 45 11 AM" src="https://github.com/user-attachments/assets/03304871-1076-4016-9bc2-0d24d8cd73ce" />
 
 - Click on “Next”
 
@@ -849,24 +813,24 @@ Part 3: — Create Deployment
 
 - Click on “Next”
 
-<img width="720" height="376" alt="1_NJEABIJWZvkpRVMpYMY59A" src="https://github.com/user-attachments/assets/9a123e1e-8497-4de1-9e33-b7710a16bc6e" />
+<img width="1127" height="624" alt="Screenshot 2026-09-28 at 10 49 50 AM" src="https://github.com/user-attachments/assets/b306fecf-1f10-47d1-8499-b8a7c3c56a87" />
 
-<img width="720" height="332" alt="1_z-TeXbXOX5su8gWgVijdDA" src="https://github.com/user-attachments/assets/5726d5f6-fec9-4ac0-9609-b2f1ad62cecc" />
+<img width="1110" height="610" alt="Screenshot 2026-09-28 at 10 50 30 AM" src="https://github.com/user-attachments/assets/1f40065d-77c8-4d7b-b899-aa04c936a195" />
 
 - Review and click on “Create Pipeline”
 
-<img width="720" height="395" alt="1_YFf0onemkYY3eWafLJFAxw" src="https://github.com/user-attachments/assets/cd95da80-1c82-43f3-9c9a-605a9c4c939a" />
+<img width="1872" height="586" alt="Screenshot 2026-09-28 at 10 51 27 AM" src="https://github.com/user-attachments/assets/79d9b1db-4301-4c26-98af-09cdf85c952f" />
 
 - The pipeline has been created and it has started running
 
-<img width="720" height="386" alt="1_3Ff0y0VsobFVsUPSd3P0jg" src="https://github.com/user-attachments/assets/b590e2fc-1d50-4ba2-9ec7-cad9f6453d9d" />
+<img width="1874" height="693" alt="Screenshot 2026-09-28 at 10 53 17 AM" src="https://github.com/user-attachments/assets/24c7b3c3-bb43-4bbb-b11b-8df24d5549fb" />
 
-<img width="720" height="379" alt="1_oq59LgCcHJfMtNjN9q-f-g" src="https://github.com/user-attachments/assets/d76325ed-82b5-49b6-aff0-f80fc465bc55" />
+<img width="1875" height="675" alt="Screenshot 2026-09-28 at 11 06 59 AM" src="https://github.com/user-attachments/assets/5f2d0cb3-84a9-4887-834c-f3142a417d69" />
 
 - You can see that the pipeline is successful
 - Access the application with the instance ip:
 - Public_IPv4_Address:80, that is 54.234.18.204:80
 
-<img width="720" height="450" alt="1_kRZZ3uy_dPn7dLczbf6kYQ" src="https://github.com/user-attachments/assets/1a998845-288f-432f-b8dd-6c4ebbd4772d" />
+<img width="1903" height="1021" alt="Screenshot 2026-09-28 at 11 12 05 AM" src="https://github.com/user-attachments/assets/8b71ce72-b252-4c47-af89-685b2942d041" />
 
 - Congratulations you have achieved the seamless Ultimate AWS CICD pipeline.
