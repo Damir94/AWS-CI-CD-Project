@@ -352,8 +352,6 @@ artifacts:
 - Name: /cloud-cicd/docker-registry/url
 - Value: docker.io
 
-<img width="720" height="326" alt="1_EXYSqoE0K_CiSEElmb33Jg" src="https://github.com/user-attachments/assets/1d74cbc5-56f1-4c21-85d0-8afdce2ce77e" />
-
 - All the phases mentioned in the yaml file are like setting up the environment for building the image
 - → Runtime as the Base image
 - → Installing the requirements
