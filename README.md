@@ -714,7 +714,7 @@ Part 2: Create Deployment Group.
 Part 3: — Create Deployment
 - Go to the file “start_container.sh” in your “Scripts” folder in the GitHub repository and provide your docker image and the port.
 
-<img width="793" height="267" alt="Screenshot 2026-09-28 at 10 06 26 AM" src="https://github.com/user-attachments/assets/161c2bd3-0997-458e-bfc4-67e4bbccd9af" />
+<img width="1167" height="459" alt="Screenshot 2026-09-28 at 11 11 06 AM" src="https://github.com/user-attachments/assets/89f04f37-47e9-44e2-8ea9-c0a508b7ee84" />
 
 - Modify those two lines. You can get the modified lines from Docker
 
