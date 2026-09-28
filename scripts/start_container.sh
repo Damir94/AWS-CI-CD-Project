@@ -5,4 +5,4 @@ set -e
 docker pull abdurakhimovda522/hotel-app:latest
 
 # Run the Docker image as a container
-docker run -dit -p 5000:5000 abdurakhimovda522/hotel-app:latest
+docker run -d -p 5000:80 abdurakhimovda522/hotel-app:latest
