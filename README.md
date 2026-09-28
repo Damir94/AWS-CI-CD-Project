@@ -246,7 +246,8 @@ echo "Hi"
 
 - Click on “Connect to GitHub”
 
-<img width="572" height="339" alt="1_b7ReGCKi9eEMqo-qRDivlA" src="https://github.com/user-attachments/assets/f9f2e2e5-b57c-436b-83fd-b2274b1b9725" />
+<img width="554" height="236" alt="Screenshot 2026-09-28 at 8 32 17 AM" src="https://github.com/user-attachments/assets/3693f555-c08b-49ce-b709-9288d39119d8" />
+
 
 - I will use the name “HoteApp” and leave “secret description” blank. Then click on “Confirm”
 
