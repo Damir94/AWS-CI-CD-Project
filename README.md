@@ -323,7 +323,7 @@ artifacts:
 
 - Click on “Systems Manager”
 
-<img width="720" height="385" alt="1_1ld6j2ZwLL9J2-5A4MaPlw" src="https://github.com/user-attachments/assets/5faa7ba4-e540-4b70-8dcc-42653b80f185" />
+<img width="1582" height="328" alt="Screenshot 2026-09-28 at 8 45 47 AM" src="https://github.com/user-attachments/assets/2178a3ee-da92-4a58-a5db-91fc71ab72ab" />
 
 - Click on “Parameter Store” on the Left-hand side
 
