@@ -265,6 +265,7 @@ echo "Hi"
 <img width="720" height="632" alt="1_n4344ocYNV2Q6aP6bqRV0w" src="https://github.com/user-attachments/assets/cd4d8d6f-c678-412a-ab9a-0e87bcb8e792" />
 
 <img width="720" height="293" alt="1_2XmNtcaWx4foJSu31YX6Ig" src="https://github.com/user-attachments/assets/43bc187c-e699-424f-b2db-acfb9290b29f" />
+
 - Note that this will create an IAM role called “codebuild-HotelApp-Build-service-role”
 
 - Under “Buildspec” Select “Use a buildspec file” and give a name as in github repo. That is “buildspec.yml”
