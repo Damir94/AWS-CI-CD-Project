@@ -753,8 +753,8 @@ Part 3: — Create Deployment
 
 ### Verification
 - Access the application on <EC2_public_IPv4_Address>:<host port>
-- 54.234.18.204:80
-- Note: You need to open this port in the instance security group we are using port 80
+- 54.234.18.204:5000
+- Note: You need to open this port in the instance security group we are using port 5000
 
 <img width="1893" height="1010" alt="Screenshot 2026-09-28 at 10 39 17 AM" src="https://github.com/user-attachments/assets/fde0ffe3-6e11-4849-8496-92a5aa407ff1" />
 
@@ -821,7 +821,7 @@ Part 3: — Create Deployment
 
 - You can see that the pipeline is successful
 - Access the application with the instance ip:
-- Public_IPv4_Address:80, that is 54.234.18.204:80
+- Public_IPv4_Address:80, that is 54.234.18.204:5000
 
 <img width="1903" height="1021" alt="Screenshot 2026-09-28 at 11 12 05 AM" src="https://github.com/user-attachments/assets/8b71ce72-b252-4c47-af89-685b2942d041" />
 
